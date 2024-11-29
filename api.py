@@ -6,13 +6,13 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 CORS(app)
 
-# Database Configuration: Update with your database connection details
+# Database Configuration: Update with the database connection details
 # Example for MySQL: 'mysql+pymysql://username:password@host/dbname'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///refill_app.db'  # Replace with your actual database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///refill_app.db'  
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-# Database Models: Adjust column names and types based on your actual database schema
+# Database Models: Adjust column names and types based on the actual database schema
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
@@ -26,9 +26,9 @@ class RefillStation(db.Model):
     longitude = db.Column(db.Float, nullable=False)
     description = db.Column(db.String(255), nullable=True)
 
-# Replace or add tables here to match your database schema
 
-# Endpoints
+
+
 
 # User Registration
 @app.route('/register', methods=['POST'])
@@ -101,6 +101,6 @@ def process_payment():
 
 # Start the Server
 if __name__ == '__main__':
-    # Uncomment the following line if you need to create tables in your database
+    # Uncomment the following line if you need to create tables in the database
     # with app.app_context(): db.create_all()
     app.run(debug=True)
